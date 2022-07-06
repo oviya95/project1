@@ -23,39 +23,13 @@
         .attr("transform",
               "translate(" + margin.left + "," + margin.top + ")");
 
-    // var data_obj = [
-    //     {
-    //         bug_reported_date: "2022-02-14",
-    //         task_picked_up_date: "2022-02-15",
-    //         task_completed_date: "2022-02-19",
-    //         task_size: "2"
-    //     },
-    //     {
-    //         bug_reported_date: "2022-02-22",
-    //         task_picked_up_date: "2022-02-23",
-    //         task_completed_date: "2022-02-24",
-    //         task_size: "1"
-    //     },
-    //     {
-    //         bug_reported_date: "2022-03-02",
-    //         task_picked_up_date: "2022-03-02",
-    //         task_completed_date: "2022-03-08",
-    //         task_size: "3"
-    //     },
-    //     {
-    //         bug_reported_date: "2022-03-08",
-    //         task_picked_up_date: "2022-03-08",
-    //         task_completed_date: "2022-03-09",
-    //         task_size: "1"
-    //     }
-    // ];
-
+  
     //Read the data
-    d3.csv("bugs_reported.csv",
+    d3.json("https://raw.githubusercontent.com/oviya95/project1/main/bugs_reported.json",
     
       // When reading the csv, I must format variables:
       function(d){
-        return { date : d3.timeParse("%Y-%m-%d")(d.date), value : d.task_size }
+        return { date : d3.timeParse("%Y-%m-%d")(d.date), task_size : d.task_size }
       },
     
       // Now I can use this dataset:
