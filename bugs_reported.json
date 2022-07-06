@@ -2,25 +2,29 @@
     {
       "bug_reported_date": "2022-02-14",
       "task_picked_up_date": "2022-02-15",
-      "task_completed_date": "2022-02-19",
+      "task_completed_date": "2022-02-21",
+      "business_days_to_completion": 4,
       "task_size": 2
     },
     {
       "bug_reported_date": "2022-02-22",
       "task_picked_up_date": "2022-02-23",
       "task_completed_date": "2022-02-24",
+      "business_days_to_completion": 1,
       "task_size": 1
     },
     {
       "bug_reported_date": "2022-03-02",
       "task_picked_up_date": "2022-03-02",
       "task_completed_date": "2022-03-08",
+      "business_days_to_completion": 3,
       "task_size": 3
     },
     {
       "bug_reported_date": "2022-03-08",
       "task_picked_up_date": "2022-03-08",
       "task_completed_date": "2022-03-09",
+      "business_days_to_completion": 1,
       "task_size": 1
     }
 ]
