@@ -29,7 +29,7 @@
     
       // When reading the csv, I must format variables:
       function(d){
-        return { date : d3.timeParse("%Y-%m-%d")(d.date), task_size : d.task_size }
+        return { bug_reported_date : d3.timeParse("%Y-%m-%d")(d.bug_reported_date), task_size : d.task_size }
       },
     
       // Now I can use this dataset:
@@ -37,7 +37,7 @@
     
         // Add X axis --> it is a date format
         var x = d3.scaleTime()
-          .domain(d3.extent(data, function(d) { return d.date; }))
+          .domain(d3.extent(data, function(d) { return d.bug_reported_date; }))
           .range([ 0, width ]);
         svg.append("g")
           .attr("transform", "translate(0," + height + ")")
@@ -57,7 +57,7 @@
           .attr("stroke", "steelblue")
           .attr("stroke-width", 1.5)
           .attr("d", d3.line()
-            .x(function(d) { return x(d.date) })
+            .x(function(d) { return x(d.bug_reported_date) })
             .y(function(d) { return y(d.task_size) })
             )
     
