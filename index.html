@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v4.js"></script>
+
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz"></div>
+
+<script>
+
+    // set the dimensions and margins of the graph
+    var margin = {top: 10, right: 30, bottom: 30, left: 60},
+        width = 460 - margin.left - margin.right,
+        height = 400 - margin.top - margin.bottom;
+    
+    // append the svg object to the body of the page
+    var svg = d3.select("#my_dataviz")
+      .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+        .attr("transform",
+              "translate(" + margin.left + "," + margin.top + ")");
+
+    // var data_obj = [
+    //     {
+    //         bug_reported_date: "2022-02-14",
+    //         task_picked_up_date: "2022-02-15",
+    //         task_completed_date: "2022-02-19",
+    //         task_size: "2"
+    //     },
+    //     {
+    //         bug_reported_date: "2022-02-22",
+    //         task_picked_up_date: "2022-02-23",
+    //         task_completed_date: "2022-02-24",
+    //         task_size: "1"
+    //     },
+    //     {
+    //         bug_reported_date: "2022-03-02",
+    //         task_picked_up_date: "2022-03-02",
+    //         task_completed_date: "2022-03-08",
+    //         task_size: "3"
+    //     },
+    //     {
+    //         bug_reported_date: "2022-03-08",
+    //         task_picked_up_date: "2022-03-08",
+    //         task_completed_date: "2022-03-09",
+    //         task_size: "1"
+    //     }
+    // ];
+
+    //Read the data
+    d3.csv("bugs_reported.csv",
+    
+      // When reading the csv, I must format variables:
+      function(d){
+        return { date : d3.timeParse("%Y-%m-%d")(d.date), value : d.task_size }
+      },
+    
+      // Now I can use this dataset:
+      function(data) {
+    
+        // Add X axis --> it is a date format
+        var x = d3.scaleTime()
+          .domain(d3.extent(data, function(d) { return d.date; }))
+          .range([ 0, width ]);
+        svg.append("g")
+          .attr("transform", "translate(0," + height + ")")
+          .call(d3.axisBottom(x));
+    
+        // Add Y axis
+        var y = d3.scaleLinear()
+          .domain([0, d3.max(data, function(d) { return +d.task_size; })])
+          .range([ height, 0 ]);
+        svg.append("g")
+          .call(d3.axisLeft(y));
+    
+        // Add the line
+        svg.append("path")
+          .datum(data)
+          .attr("fill", "none")
+          .attr("stroke", "steelblue")
+          .attr("stroke-width", 1.5)
+          .attr("d", d3.line()
+            .x(function(d) { return x(d.date) })
+            .y(function(d) { return y(d.task_size) })
+            )
+    
+    })
+    
+    </script>
