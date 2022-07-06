@@ -1,0 +1,14 @@
+[
+    {
+      "avg_business_days_to_completion": 1,
+      "task_size": 1
+    },
+    {
+      "avg_business_days_to_completion": 4,
+      "task_size": 2
+    },
+    {
+      "avg_business_days_to_completion": 3,
+      "task_size": 3
+    }
+]
